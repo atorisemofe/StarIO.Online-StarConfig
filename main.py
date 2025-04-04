@@ -68,4 +68,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Get the port from the environment variable, defaulting to 5000 if not set
+    port = int(os.environ.get('PORT', 5000))
+    # Bind the server to 0.0.0.0 (accessible from all IPs) and the port
+    app.run(host='0.0.0.0', port=port)  
