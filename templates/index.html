@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPRNT Configuration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 60px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .alert {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 5px;
+            background-color: #e0f7e9;
+            color: #2f7a45;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>StarIO.Online CloudPRNT Configuration</h2>
+        <form action="/" method="post">
+            <label for="appId">Access ID:</label>
+            <input type="text" id="appId" name="appId" required>
+
+            <label for="groupPath">Group Path:</label>
+            <input type="text" id="groupPath" name="groupPath" required>
+
+            <label for="cloudprntUrl">CloudPRNT URL:</label>
+            <input type="text" id="cloudprntUrl" name="cloudprntUrl" required>
+
+            <label for="printerModel">Printer Model:</label>
+            <select id="printerModel" name="printerModel" required>
+                <option value="">-- Select Printer Model --</option>
+                <option value="TSP100IV">TSP100IV</option>
+                <option value="mC-Print2">mC-Print2</option>
+                <option value="mC-Print3">mC-Print3</option>
+                <option value="mC-Print3(2ndGen)">mC-Print3(2ndGen)</option>
+                <option value="mC-Label3">mC-Label3</option>
+            </select>
+
+            <button type="submit">Send Configuration</button>
+        </form>
+
+        {% if alert_message %}
+            {% if alert_message.success %}
+                <div style="background-color: #d1e7dd; color: #0f5132; padding: 10px; border-radius: 5px;">
+                    {{ alert_message.success }}
+                </div>
+            {% elif alert_message.error %}
+                <div style="background-color: #f8d7da; color: #842029; padding: 10px; border-radius: 5px;">
+                    {{ alert_message.error }}
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
